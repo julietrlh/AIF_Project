@@ -1,0 +1,53 @@
+# Use an official Python runtime as the parent image
+FROM python:3.8
+# Set the working directory in the container to /app
+WORKDIR /app
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Téléchargez et décompressez à nouveau
+RUN pip install kaggle
+RUN mkdir -p ~/.kaggle/ && mv kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
+RUN kaggle datasets download "ghrzarea/movielens-20m-posters-for-machine-learning"
+RUN apt-get install unzip
+RUN unzip movielens-20m-posters-for-machine-learning.zip
+
+# ------- Download in app/data/ -------
+RUN mkdir /data
+
+# rec_imdb.ann
+RUN wget https://drive.google.com/uc?export=download&id=1goJZr6r8-4spnWyRHTRjwHfHTrqAB3mm -P /data
+
+# annoy_index_bow.ann
+RUN wget https://drive.google.com/uc?export=download&id=1A-5umJhRa2ORMtD_Ek6mMPr63Q6ea0QT -P /data
+
+# annoy_index_glove.ann
+RUN wget https://drive.google.com/uc?export=download&id=1ULaLXNkEkul1IqDaNtWi43_VRWinDp5T -P /data
+
+# movies.pkl
+RUN wget https://drive.google.com/uc?export=download&id=1EgKnD-dLk0gMYgUcURh3QuRHJ035Mbyi -P /data
+
+# metadata.pkl
+RUN wget https://drive.google.com/uc?export=download&id=1AgR5pa1wvfc5CbAtfHyXS-VoL6o6_VCU -P /data
+
+
+# -------- Download in app/model/ --------
+RUN mkdir /model
+
+# count_vectorizer.pkl
+RUN wget https://drive.google.com/uc?export=download&id=1Rg3pr6UNvbYbTQEtufwjeag35nbkVMx6 -P /model
+
+# glove_model.pkl
+RUN wget https://drive.google.com/uc?export=download&id=1uSybCy7jeHKn07X5uTwXVrd6xfaeHmJe -P /model
+
+
+# ------- Requirements --------
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Make port 7860 available to the world outside this container
+# Gradio by default runs on port 7860
+EXPOSE 7860
+
+# Run the Gradio app when the container launches
+CMD ["python", "gradio_webapp.py"]
