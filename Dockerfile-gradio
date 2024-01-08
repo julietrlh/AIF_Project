@@ -13,8 +13,8 @@ RUN apt-get install unzip
 RUN unzip movielens-20m-posters-for-machine-learning.zip
 
 # ------- Download in app/data/ -------
-RUN chmod +x /download_files.sh
-RUN /download_files.sh
+RUN chmod +x ./download_files.sh
+RUN ./download_files.sh
 
 # ------- Requirements --------
 # Install any needed packages specified in requirements.txt

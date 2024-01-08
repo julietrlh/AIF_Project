@@ -23,8 +23,8 @@ model.eval()
 
 
 #Our dataframe
-df_image = pd.read_pickle('./data/movies.pkl')
-df_text = pd.read_pickle ('./data/metadata.pkl')
+df_image = pd.read_pickle('./movies.pkl')
+df_text = pd.read_pickle ('./metadata.pkl')
 
 
 

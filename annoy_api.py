@@ -10,12 +10,12 @@ annoy_db = AnnoyIndex(576, metric='angular')
 annoy_bow = AnnoyIndex(5000, 'angular')
 annoy_glove = AnnoyIndex(100, 'angular')
                                             
-annoy_db.load('data/rec_imdb.ann')  
-annoy_bow.load('data/annoy_index_bow.ann') 
-annoy_glove.load('data/annoy_index_glove.ann')
+annoy_db.load('rec_imdb.ann')  
+annoy_bow.load('annoy_index_bow.ann') 
+annoy_glove.load('annoy_index_glove.ann')
 
-count_vectorizer = pd.read_pickle('./model/count_vectorizer.pkl')
-glove_model = pd.read_pickle('./model/glove_model.pkl')
+count_vectorizer = pd.read_pickle('./count_vectorizer.pkl')
+glove_model = pd.read_pickle('./glove_model.pkl')
 
 
 @app.route('/') # This is the home route, it just returns 'Hello world!'
