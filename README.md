@@ -1,4 +1,6 @@
-# Docker compose example
+## GOULM Pierre-Alain, LACROIX Laly, TREILHOU Julie, VALTON Loann
+
+# Docker compose 
 This is a simple example of how to use Gradio with Docker compose to help you get started on the project.  
 The ```annoy-api``` and ```Dockefile-api``` files shows how to putt an Annoy index in a Docker container and expose it as a REST API.  
 The ```Dockerfile-gradio``` and the ```gradio-webapp``` files show how to put a Gradio webapp in a Docker container.
@@ -16,3 +18,5 @@ In the ```annoy-api``` I use a fake index to show how to use the API. You can re
 ```docker-compose down``` in the root directory of this repository
 7. To remove the containers, run `docker-compose rm` in the root directory of this repository
 8. To remove the images, run `docker image prune -a` in the root directory of this repository
+
+
